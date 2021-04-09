@@ -82,5 +82,16 @@ namespace SeleniumPlay.PageObjects
         {
             _driver.FindElement(By.LinkText(linkText)).Click();
         }
+
+        public string FindRedBoxClass()
+        {
+            IWebElement redBox = _driver.FindElement(By.Id("redbox"));
+            IWebElement answerSlot6 = _driver.FindElement(By.Id("answer6"));
+
+            answerSlot6.Clear();
+            answerSlot6.SendKeys(redBox.GetAttribute("class"));
+
+            return answerSlot6.GetAttribute("value");
+        }
     }
 }

@@ -52,6 +52,12 @@ namespace SeleniumPlay.Tests
             pp.ClickLink("click me"); // This link doesn't seem to do anything (on FireFox), so testing with asserts is difficult.
         }
 
+        [Test]
+        public void TestTask6()
+        {
+            Assert.AreEqual("maroon", pp.FindRedBoxClass());
+        }
+
         [TearDown]
         public void CleanUp()
         {
