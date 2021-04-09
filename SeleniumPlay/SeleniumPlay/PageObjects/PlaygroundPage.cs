@@ -23,12 +23,22 @@ namespace SeleniumPlay.PageObjects
         public string FillTitleAnswerSlot()
         {
             string title = _driver.Title;
-            IWebElement answerSlot = _driver.FindElement(By.Id("answer1"));
+            IWebElement answerSlot1 = _driver.FindElement(By.Id("answer1"));
 
-            answerSlot.Clear();
-            answerSlot.SendKeys(title);
+            answerSlot1.Clear();
+            answerSlot1.SendKeys(title);
 
-            return answerSlot.GetAttribute("value");
+            return answerSlot1.GetAttribute("value");
+        }
+
+        public string FillNameSlot(string name)
+        {
+            IWebElement nameSlot = _driver.FindElement(By.Id("name"));
+
+            nameSlot.Clear();
+            nameSlot.SendKeys(name);
+
+            return nameSlot.GetAttribute("value");
         }
     }
 }

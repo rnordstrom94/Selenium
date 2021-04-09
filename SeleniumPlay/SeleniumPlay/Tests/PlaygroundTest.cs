@@ -9,19 +9,27 @@ namespace SeleniumPlay.Tests
     class PlaygroundTest
     {
         IWebDriver driver;
+        PlaygroundPage pp;
 
         [SetUp]
         public void Initialize()
         {
             driver = new FirefoxDriver();
+            pp = new PlaygroundPage(driver);
         }
 
         [Test]
-        public void TestPlaygroundPage()
+        public void TestTask1()
         {
-            PlaygroundPage pp = new PlaygroundPage(driver);
-
             Assert.AreEqual(PlaygroundPage.Title, pp.FillTitleAnswerSlot());
+        }
+
+        [Test]
+        public void TestTask2()
+        {
+            string name = "Kilgore Trout";
+
+            Assert.AreEqual(name, pp.FillNameSlot(name));
         }
 
         [TearDown]
