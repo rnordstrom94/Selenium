@@ -46,6 +46,12 @@ namespace SeleniumPlay.Tests
             Assert.IsFalse(string.IsNullOrEmpty(pp.CountBlueBoxes()));
         }
 
+        [Test]
+        public void TestTask5()
+        {
+            pp.ClickLink("click me"); // This link doesn't seem to do anything (on FireFox), so testing with asserts is difficult.
+        }
+
         [TearDown]
         public void CleanUp()
         {

@@ -77,5 +77,10 @@ namespace SeleniumPlay.PageObjects
 
             return answerSlot4.GetAttribute("value");
         }
+
+        public void ClickLink(string linkText)
+        {
+            _driver.FindElement(By.LinkText(linkText)).Click();
+        }
     }
 }
