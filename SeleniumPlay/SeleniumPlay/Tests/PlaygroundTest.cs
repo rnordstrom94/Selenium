@@ -32,6 +32,14 @@ namespace SeleniumPlay.Tests
             Assert.AreEqual(name, pp.FillNameSlot(name));
         }
 
+        [Test]
+        public void TestTask3()
+        {
+            string occupation = "Science Fiction Author";
+
+            Assert.AreEqual(occupation, pp.SetOccupation(occupation)); 
+        }
+
         [TearDown]
         public void CleanUp()
         {

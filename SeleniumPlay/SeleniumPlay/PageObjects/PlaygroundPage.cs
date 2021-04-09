@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumPlay.PageObjects
 {
@@ -39,6 +40,30 @@ namespace SeleniumPlay.PageObjects
             nameSlot.SendKeys(name);
 
             return nameSlot.GetAttribute("value");
+        }
+
+        public string SetOccupation(string occupation)
+        {
+            IWebElement occupationForm = _driver.FindElement(By.Id("occupation"));
+            SelectElement occupationSelect = new SelectElement(occupationForm);
+            string occupationValue = "";
+
+            switch (occupation)
+            {
+                case "Astronaut":
+                    occupationValue = "astronaut";
+                    break;
+                case "Politician":
+                    occupationValue = "politician";
+                    break;
+                case "Science Fiction Author":
+                    occupationValue = "scifiauthor";
+                    break;
+            }
+
+            occupationSelect.SelectByValue(occupationValue);
+
+            return occupationSelect.SelectedOption.Text;
         }
     }
 }
