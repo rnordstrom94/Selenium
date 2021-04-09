@@ -65,5 +65,17 @@ namespace SeleniumPlay.PageObjects
 
             return occupationSelect.SelectedOption.Text;
         }
+
+        public string CountBlueBoxes()
+        {
+            var blueBoxes = _driver.FindElements(By.ClassName("bluebox"));
+
+            IWebElement answerSlot4 = _driver.FindElement(By.Id("answer4"));
+
+            answerSlot4.Clear();
+            answerSlot4.SendKeys(blueBoxes.Count.ToString());
+
+            return answerSlot4.GetAttribute("value");
+        }
     }
 }

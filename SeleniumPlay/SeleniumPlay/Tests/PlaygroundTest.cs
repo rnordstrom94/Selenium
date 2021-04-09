@@ -40,6 +40,12 @@ namespace SeleniumPlay.Tests
             Assert.AreEqual(occupation, pp.SetOccupation(occupation)); 
         }
 
+        [Test]
+        public void TestTask4()
+        {
+            Assert.IsFalse(string.IsNullOrEmpty(pp.CountBlueBoxes()));
+        }
+
         [TearDown]
         public void CleanUp()
         {
