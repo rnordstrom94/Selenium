@@ -100,5 +100,21 @@ namespace SeleniumPlay.PageObjects
 
             js.ExecuteScript("ran_this_js_function()");
         }
+
+        public string ExecuteJavaScriptReturn()
+        {
+            IJavaScriptExecutor js = _driver as IJavaScriptExecutor;
+            IWebElement answerSlot8 = _driver.FindElement(By.Id("answer8"));
+
+            var result = js.ExecuteScript("return got_return_from_js_function()");
+
+            if (result != null)
+            {
+                answerSlot8.Clear();
+                answerSlot8.SendKeys(result.ToString());
+            }
+
+            return answerSlot8.GetAttribute("value");
+        }
     }
 }

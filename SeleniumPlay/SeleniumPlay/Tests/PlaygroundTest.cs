@@ -64,6 +64,12 @@ namespace SeleniumPlay.Tests
             pp.ExecuteJavaScriptNoReturn();
         }
 
+        [Test]
+        public void TestTask8()
+        {
+            Assert.IsFalse(string.IsNullOrEmpty(pp.ExecuteJavaScriptReturn()));
+        }
+
         [TearDown]
         public void CleanUp()
         {
