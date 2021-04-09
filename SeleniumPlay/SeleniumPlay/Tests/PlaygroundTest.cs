@@ -61,13 +61,19 @@ namespace SeleniumPlay.Tests
         [Test]
         public void TestTask7()
         {
-            pp.ExecuteJavaScriptNoReturn();
+            pp.ExecuteJavaScriptNoReturn(); // This function is also hard to test. The site itself validates the result, apparently.
         }
 
         [Test]
         public void TestTask8()
         {
             Assert.IsFalse(string.IsNullOrEmpty(pp.ExecuteJavaScriptReturn()));
+        }
+
+        [Test]
+        public void TestTask9()
+        {
+            Assert.IsTrue(pp.SelectRadioButton("Wrote Book"));
         }
 
         [TearDown]

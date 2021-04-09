@@ -116,5 +116,27 @@ namespace SeleniumPlay.PageObjects
 
             return answerSlot8.GetAttribute("value");
         }
+
+        public bool SelectRadioButton(string option)
+        {
+            IWebElement form = _driver.FindElement(By.Id("testform"));
+            IWebElement radioButton1 = form.FindElement(By.CssSelector("[value=\"wrotebook\"]"));
+            IWebElement radioButton2 = form.FindElement(By.CssSelector("[value=\"didntwritebook\"]"));
+            bool selected = false;
+
+            switch (option)
+            {
+                case "Wrote Book":
+                    radioButton1.Click();
+                    selected = radioButton1.Selected;
+                    break;
+                case "Didn't Write Book":
+                    radioButton2.Click();
+                    selected = radioButton2.Selected;
+                    break;
+            }
+
+            return selected;
+        }
     }
 }
