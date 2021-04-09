@@ -93,5 +93,12 @@ namespace SeleniumPlay.PageObjects
 
             return answerSlot6.GetAttribute("value");
         }
+
+        public void ExecuteJavaScriptNoReturn()
+        {
+            IJavaScriptExecutor js = _driver as IJavaScriptExecutor;
+
+            js.ExecuteScript("ran_this_js_function()");
+        }
     }
 }

@@ -58,6 +58,12 @@ namespace SeleniumPlay.Tests
             Assert.AreEqual("maroon", pp.FindRedBoxClass());
         }
 
+        [Test]
+        public void TestTask7()
+        {
+            pp.ExecuteJavaScriptNoReturn();
+        }
+
         [TearDown]
         public void CleanUp()
         {
