@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
@@ -158,21 +159,20 @@ namespace SeleniumPlay.PageObjects
         {
             var allBoxes = _driver.FindElements(By.CssSelector("span:not(.ok)"));
             IWebElement firstBox = allBoxes[allBoxes.Count - 2];
-            string answer = "";
+            string color = "";
 
             if (firstBox != null)
             {
-                string color = firstBox.Text.Split(" ")[0];
-                answer = color.First().ToString().ToUpper() + color.Substring(1);
+                color = firstBox.Text.Split(" ")[0];
                 IWebElement answerSlot11 = _driver.FindElement(By.Id("answer11"));
 
                 answerSlot11.Clear();
-                answerSlot11.SendKeys(answer);
+                answerSlot11.SendKeys(color);
 
                 return answerSlot11.GetAttribute("value");
             }
 
-            return answer;
+            return color;
         }
 
         public Size SetBrowserSize(int width, int height)
@@ -250,6 +250,23 @@ namespace SeleniumPlay.PageObjects
             IWebElement submit = _driver.FindElement(By.Id("submitbutton"));
 
             submit.Click();
+        }
+
+        public List<string> CheckResults()
+        {
+            List<string> resultStrings = new List<string>();
+            IWebElement checkResults = _driver.FindElement(By.Id("checkresults"));
+
+            checkResults.Click();
+
+            var results = _driver.FindElements(By.ClassName("ok"));
+
+            foreach (IWebElement ok in results)
+            {
+                resultStrings.Add(ok.Text);
+            }
+
+            return resultStrings;
         }
     }
 }

@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using SeleniumPlay.PageObjects;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace SeleniumPlay.Tests
@@ -9,8 +10,10 @@ namespace SeleniumPlay.Tests
     [TestFixture]
     class PlaygroundTest
     {
-        IWebDriver driver;
-        PlaygroundPage pp;
+        private IWebDriver driver;
+        private PlaygroundPage pp;
+        private const string ResultOK = "OK";
+        private const string ResultNotOK = "NOT OK";
 
         [SetUp]
         public void Initialize()
@@ -59,7 +62,7 @@ namespace SeleniumPlay.Tests
         [Test]
         public void TestTask6()
         {
-            Assert.AreEqual("maroon", pp.FindRedBoxClass());
+            Assert.IsFalse(string.IsNullOrEmpty(pp.FindRedBoxClass()));
         }
 
         [Test]
@@ -89,7 +92,9 @@ namespace SeleniumPlay.Tests
         [Test]
         public void TestTask11()
         {
-            Assert.IsTrue(pp.BoxOnTop() == "Green" || pp.BoxOnTop() == "Orange");
+            string boxOnTop = pp.BoxOnTop();
+
+            Assert.IsTrue(boxOnTop == "green" || boxOnTop == "orange");
         }
 
         [Test]
@@ -106,13 +111,17 @@ namespace SeleniumPlay.Tests
         [Test]
         public void TestTask13()
         {
-            Assert.IsTrue(pp.CheckIsHere() == "yes" || pp.CheckIsHere() == "no");
+            string isHere = pp.CheckIsHere();
+
+            Assert.IsTrue(isHere == "yes" || isHere == "no");
         }
 
         [Test]
         public void TestTask14()
         {
-            Assert.IsTrue(pp.CheckPurpleBox() == "yes" || pp.CheckPurpleBox() == "no");
+            string boxVisible = pp.CheckPurpleBox();
+
+            Assert.IsTrue(boxVisible == "yes" || boxVisible == "no");
         }
 
         [Test]
@@ -125,6 +134,47 @@ namespace SeleniumPlay.Tests
         public void TestTask17()
         {
             pp.ClickSubmit();
+        }
+
+        [Test]
+        public void TestCheckResults()
+        {
+            List<string> results = pp.CheckResults();
+
+            foreach (string r in results)
+            {
+                Assert.AreEqual(ResultNotOK, r);
+            }
+        }
+
+        [Test]
+        public void TestAll()
+        {
+            pp.FillTitleAnswerSlot();
+            pp.FillNameSlot("Kilgore Trout");
+            pp.SetOccupation("Science Fiction Author");
+            pp.CountBlueBoxes();
+            pp.ClickLink("click me");
+            pp.FindRedBoxClass();
+            pp.ExecuteJavaScriptNoReturn();
+            pp.ExecuteJavaScriptReturn();
+            pp.SelectRadioButton("Wrote Book");
+            pp.RedBoxText();
+            pp.BoxOnTop();
+            pp.SetBrowserSize(850, 650);
+            pp.CheckIsHere();
+            pp.CheckPurpleBox();
+            pp.ClickThenWait();
+            pp.ClickSubmit();
+
+            List<string> results = pp.CheckResults();
+
+            Assert.AreEqual(17, results.Count);
+
+            foreach (string r in results)
+            {
+                Assert.AreEqual(ResultOK, r);
+            }
         }
 
         [TearDown]
