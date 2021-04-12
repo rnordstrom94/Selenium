@@ -106,6 +106,12 @@ namespace SeleniumPlay.Tests
             Assert.IsTrue(pp.CheckIsHere() == "yes" || pp.CheckIsHere() == "no");
         }
 
+        [Test]
+        public void TestTask14()
+        {
+            Assert.IsTrue(pp.CheckPurpleBox() == "yes" || pp.CheckPurpleBox() == "no");
+        }
+
         [TearDown]
         public void CleanUp()
         {

@@ -203,5 +203,27 @@ namespace SeleniumPlay.PageObjects
 
             return answerSlot13.GetAttribute("value");
         }
+
+        public string CheckPurpleBox()
+        {
+            IWebElement purpleBox = _driver.FindElement(By.Id("purplebox"));
+            IWebElement answerSlot14 = _driver.FindElement(By.Id("answer14"));
+
+            string answer;
+
+            if (purpleBox.Displayed)
+            {
+                answer = "yes";
+            }
+            else
+            {
+                answer = "no";
+            }
+
+            answerSlot14.Clear();
+            answerSlot14.SendKeys(answer);
+
+            return answerSlot14.GetAttribute("value");
+        }
     }
 }
