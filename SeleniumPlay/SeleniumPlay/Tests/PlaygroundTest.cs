@@ -77,6 +77,12 @@ namespace SeleniumPlay.Tests
         }
 
         [Test]
+        public void TestTask10()
+        {
+            Assert.IsTrue(pp.RedBoxText().Contains("Red Box"));
+        }
+
+        [Test]
         public void TestTask11()
         {
             Assert.IsTrue(pp.BoxOnTop() == "Green" || pp.BoxOnTop() == "Orange");

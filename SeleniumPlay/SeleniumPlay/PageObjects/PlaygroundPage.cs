@@ -140,6 +140,18 @@ namespace SeleniumPlay.PageObjects
             return selected;
         }
 
+        public string RedBoxText()
+        {
+            IWebElement redBox = _driver.FindElement(By.Id("redbox"));
+            IWebElement answerSlot10 = _driver.FindElement(By.Id("answer10"));
+            string redBoxText = redBox.Text;
+
+            answerSlot10.Clear();
+            answerSlot10.SendKeys(redBoxText);
+
+            return answerSlot10.GetAttribute("value");
+        }
+
         public string BoxOnTop()
         {
             var allBoxes = _driver.FindElements(By.CssSelector("span:not(.ok)"));
@@ -154,6 +166,8 @@ namespace SeleniumPlay.PageObjects
 
                 answerSlot11.Clear();
                 answerSlot11.SendKeys(answer);
+
+                return answerSlot11.GetAttribute("value");
             }
 
             return answer;
