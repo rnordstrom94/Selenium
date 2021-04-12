@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
 using System.Drawing;
 using System.Linq;
 
@@ -224,6 +225,31 @@ namespace SeleniumPlay.PageObjects
             answerSlot14.SendKeys(answer);
 
             return answerSlot14.GetAttribute("value");
+        }
+
+        public void ClickThenWait()
+        {
+            IWebElement link1 = _driver.FindElement(By.LinkText("click then wait"));
+
+            link1.Click();
+
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            IWebElement link2 = wait.Until(e => e.FindElement(By.LinkText("click after wait")));
+
+            link2.Click();
+
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+
+            IAlert alert = _driver.SwitchTo().Alert();
+
+            alert.Accept();
+        }
+
+        public void ClickSubmit()
+        {
+            IWebElement submit = _driver.FindElement(By.Id("submitbutton"));
+
+            submit.Click();
         }
     }
 }

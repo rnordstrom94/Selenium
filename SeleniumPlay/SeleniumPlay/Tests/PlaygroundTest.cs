@@ -15,7 +15,10 @@ namespace SeleniumPlay.Tests
         [SetUp]
         public void Initialize()
         {
-            driver = new FirefoxDriver();
+            FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
+            service.Host = "::1";
+
+            driver = new FirefoxDriver(service);
             pp = new PlaygroundPage(driver);
         }
 
@@ -110,6 +113,18 @@ namespace SeleniumPlay.Tests
         public void TestTask14()
         {
             Assert.IsTrue(pp.CheckPurpleBox() == "yes" || pp.CheckPurpleBox() == "no");
+        }
+
+        [Test]
+        public void TestTask15And16()
+        {
+            pp.ClickThenWait();
+        }
+
+        [Test]
+        public void TestTask17()
+        {
+            pp.ClickSubmit();
         }
 
         [TearDown]
