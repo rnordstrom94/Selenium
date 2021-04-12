@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Linq;
 
 namespace SeleniumPlay.PageObjects
 {
@@ -137,6 +138,25 @@ namespace SeleniumPlay.PageObjects
             }
 
             return selected;
+        }
+
+        public string BoxOnTop()
+        {
+            var allBoxes = _driver.FindElements(By.CssSelector("span:not(.ok)"));
+            IWebElement firstBox = allBoxes[allBoxes.Count - 2];
+            string answer = "";
+
+            if (firstBox != null)
+            {
+                string color = firstBox.Text.Split(" ")[0];
+                answer = color.First().ToString().ToUpper() + color.Substring(1);
+                IWebElement answerSlot11 = _driver.FindElement(By.Id("answer11"));
+
+                answerSlot11.Clear();
+                answerSlot11.SendKeys(answer);
+            }
+
+            return answer;
         }
     }
 }

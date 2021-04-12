@@ -76,6 +76,12 @@ namespace SeleniumPlay.Tests
             Assert.IsTrue(pp.SelectRadioButton("Wrote Book"));
         }
 
+        [Test]
+        public void TestTask11()
+        {
+            Assert.IsTrue(pp.BoxOnTop() == "Green" || pp.BoxOnTop() == "Orange");
+        }
+
         [TearDown]
         public void CleanUp()
         {
