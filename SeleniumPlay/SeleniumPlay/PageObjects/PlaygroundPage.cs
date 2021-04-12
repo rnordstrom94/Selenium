@@ -180,5 +180,28 @@ namespace SeleniumPlay.PageObjects
 
             return _driver.Manage().Window.Size;
         }
+
+        public string CheckIsHere()
+        {
+            IWebElement isHere;
+            string answer;
+
+            try
+            {
+                isHere = _driver.FindElement(By.Id("ishere"));
+                answer = "yes";
+            }
+            catch (NoSuchElementException)
+            {
+                answer = "no";
+            }
+
+            IWebElement answerSlot13 = _driver.FindElement(By.Id("answer13"));
+
+            answerSlot13.Clear();
+            answerSlot13.SendKeys(answer);
+
+            return answerSlot13.GetAttribute("value");
+        }
     }
 }

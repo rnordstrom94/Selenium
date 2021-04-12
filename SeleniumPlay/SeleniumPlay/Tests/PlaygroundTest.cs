@@ -100,6 +100,12 @@ namespace SeleniumPlay.Tests
             Assert.AreEqual(height, browserSize.Height);
         }
 
+        [Test]
+        public void TestTask13()
+        {
+            Assert.IsTrue(pp.CheckIsHere() == "yes" || pp.CheckIsHere() == "no");
+        }
+
         [TearDown]
         public void CleanUp()
         {
