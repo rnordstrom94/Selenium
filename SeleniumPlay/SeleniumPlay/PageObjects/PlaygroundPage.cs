@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Drawing;
 using System.Linq;
 
 namespace SeleniumPlay.PageObjects
@@ -171,6 +172,13 @@ namespace SeleniumPlay.PageObjects
             }
 
             return answer;
+        }
+
+        public Size SetBrowserSize(int width, int height)
+        {
+            _driver.Manage().Window.Size = new Size(width, height);
+
+            return _driver.Manage().Window.Size;
         }
     }
 }

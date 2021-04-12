@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using SeleniumPlay.PageObjects;
+using System.Drawing;
 
 namespace SeleniumPlay.Tests
 {
@@ -86,6 +87,17 @@ namespace SeleniumPlay.Tests
         public void TestTask11()
         {
             Assert.IsTrue(pp.BoxOnTop() == "Green" || pp.BoxOnTop() == "Orange");
+        }
+
+        [Test]
+        public void TestTask12()
+        {
+            int width = 850;
+            int height = 650;
+            Size browserSize = pp.SetBrowserSize(width, height);
+
+            Assert.AreEqual(width, browserSize.Width);
+            Assert.AreEqual(height, browserSize.Height);
         }
 
         [TearDown]
